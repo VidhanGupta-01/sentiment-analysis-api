@@ -107,6 +107,10 @@ class AudioService:
 
     
     def extract_audio_features(self, file_path):
+        # Extract MFCC features for frequency representation
+        # Extract pitch for voice tone
+        # Extract energy for loudness
+        # Extract ZCR for signal changes
         y, sr = librosa.load(file_path)
 
         mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
