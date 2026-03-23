@@ -111,10 +111,14 @@ class AudioService:
 
     mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
     pitch = librosa.yin(y, fmin=50, fmax=300)
+    energy = np.mean(librosa.feature.rms(y=y))
+    zcr = np.mean(librosa.feature.zero_crossing_rate(y))
 
     return {
         "mfcc_mean": np.mean(mfcc, axis=1).tolist(),
-        "pitch_mean": float(np.mean(pitch))
+        "pitch_mean": float(np.mean(pitch)),
+        "energy": float(energy),
+        "zcr": float(zcr)
     }
 
 # if __name__ == "__main__":
