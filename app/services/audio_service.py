@@ -63,7 +63,7 @@ class AudioService:
 
             # Save the extracted audio (with a unique filename)
             file_path = self._save_audio(extracted_audio, user_id)
-            features = extract_audio_features(file_path)
+            features = self.extract_audio_features(file_path)
 
             # Return the file path or URL to access the audio
             return {
@@ -106,20 +106,20 @@ class AudioService:
         return file_path
 
     
-    def extract_audio_features(file_path):
-    y, sr = librosa.load(file_path)
+    def extract_audio_features(self, file_path):
+        y, sr = librosa.load(file_path)
 
-    mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
-    pitch = librosa.yin(y, fmin=50, fmax=300)
-    energy = np.mean(librosa.feature.rms(y=y))
-    zcr = np.mean(librosa.feature.zero_crossing_rate(y))
+        mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
+        pitch = librosa.yin(y, fmin=50, fmax=300)
+        energy = np.mean(librosa.feature.rms(y=y))
+        zcr = np.mean(librosa.feature.zero_crossing_rate(y))
 
-    return {
-        "mfcc_mean": np.mean(mfcc, axis=1).tolist(),
-        "pitch_mean": float(np.mean(pitch)),
-        "energy": float(energy),
-        "zcr": float(zcr)
-    }
+        return {
+            "mfcc_mean": np.mean(mfcc, axis=1).tolist(),
+            "pitch_mean": float(np.mean(pitch)),
+            "energy": float(energy),
+            "zcr": float(zcr)
+        }
 
 # if __name__ == "__main__":
 #     service = AudioService()
