@@ -144,7 +144,7 @@ This structure helps separate the application logic, configuration files, test f
         ~$ apt-get -y update && apt-get -y upgrade && apt-get install -y --no-install-recommends ffmpeg
         ```
     - **Windows (Win10)**
-        - Follow Tutorial [here](htps://www.youtube.com/watch?v=IECI72XEox0)
+        - Follow Tutorial [here](https://www.youtube.com/watch?v=IECI72XEox0)
         - Add FFmpeg to the system path.    
 8. **Run Flask App**
    -    In Debug Mode  [port 8001]
